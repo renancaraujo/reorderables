@@ -11,6 +11,7 @@ import './reorderable_widget.dart';
 import './passthrough_overlay.dart';
 import './reorderable_mixin.dart';
 import './typedefs.dart';
+import 'global_keys.dart';
 
 /// Reorderable (drag and drop) version of [Flex], a widget that displays its
 /// draggable children in a one-dimensional array.
@@ -424,7 +425,7 @@ class _ReorderableFlexContentState extends State<_ReorderableFlexContent>
   // Handles up the logic for dragging and reordering items in the list.
   Widget _wrap(Widget toWrap, int index) {
     assert(toWrap.key != null);
-    final GlobalObjectKey keyIndexGlobalKey = GlobalObjectKey(toWrap.key!);
+    final keyIndexGlobalKey = SubStateGlobalKey(toWrap.key!, this);
     // We pass the toWrapWithGlobalKey into the Draggable so that when a list
     // item gets dragged, the accessibility framework can preserve the selected
     // state of the dragging item.
